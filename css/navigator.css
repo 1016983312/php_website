@@ -1,0 +1,69 @@
+li{
+    list-style-type: none;
+}
+#menu {
+    width: 100%;
+    margin: 30px auto 0px;
+    height: 45px;
+    background-color: #2A579A;
+}
+#menu li{
+    float: left;
+    width: 92px;
+    line-height:39px;
+    text-align: center;
+    position:relative;
+    border:none;
+}
+#menu li a {
+    font-size:16px; color: rgba(255,255,255,.7);
+    display:block;
+    outline:0;
+    text-decoration:none; 
+}
+#menu li:hover a {
+    color: #FFF; /*导航栏文字颜色 */
+}
+#menu li:hover .dropdown_1column {
+    left:0px;
+    top:38px;
+}
+.dropdown_1column{ /* 下拉菜单边框颜色*/
+    margin: 0px auto;
+    float: left;
+    position: absolute;
+    left: -999em;
+    text-align: left;
+    border: 1px solid #066591;
+    border-top: none;
+    background: #2A579A;
+    width: 140px;
+}
+#menu li:hover div a { /* 下拉菜单文字颜色*/
+font-size:16px
+;color:#e6f8e9;
+}
+
+#menu li:hover div a:hover{
+   background-color:#3e6db5;
+    
+} /*下拉带鼠标停留*/
+
+#menu li ul {
+list-style:none;padding:10px 5px;
+margin:0;
+}
+#menu li ul li {
+font-size:12px;
+line-height:26px;
+position:relative;
+padding:0;margin:0;
+float:none;
+text-align:left;
+width:130px;
+}
+#menu li ul li:hover {
+background:none;
+border:none;padding:0;
+margin:0;
+}
