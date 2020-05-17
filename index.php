@@ -5,13 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASRIBS</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
 </head>
 
 <body>
     <div class="menu">
         <?php include 'components/navigator.php';?>
     </div>
-    <div>
+    <div id="page-content" class="content">
         hello world!
     </div>
     <div class="footer">
