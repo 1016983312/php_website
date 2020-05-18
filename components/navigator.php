@@ -7,7 +7,7 @@
 <body>
     <div id="menu">
     <ul>
-        <li> <a href="" class="nodrop">首页</a></li>
+        <li> <a href="/index.php" class="nodrop">首页</a></li>
         <li><a href="" class="drop">常用工具</a>
         <div class="dropdown_1column">
             <div class="col_1">
@@ -23,7 +23,5 @@
         <li><a href="" class="nodrop">联系我</a></li>
     </ul>
     </div>
-
-    
 </body>
 </html>
