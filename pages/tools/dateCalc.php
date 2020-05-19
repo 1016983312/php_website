@@ -18,13 +18,47 @@
                 计算两个日期相差天数
             </div>
             <div class="sub-content-body">
-                <input type="text" id="date-calc-diff-content-from-year" />年<input type="text"
-                    id="date-calc-diff-content-from-month" />月<input type="text"
-                    id="date-calc-diff-content-from-day" />日（默认今天）<p>
-                    距离<input type="text" id="date-calc-diff-content-to-year" />年<input type="text"
-                        id="date-calc-diff-content-to-month" />月<input type="text"
-                        id="date-calc-diff-content-to-day" />日<p>
-                        <button id="calcDateDiff">相差</button><input id="calcDateDiffResult" type="text"></input>天</div>
+                <table>
+                    <tr>
+                        <td>
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-from-year" />
+                        </td>
+                        <td>年
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-from-month" />
+                        </td>
+                        <td>月
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-from-day" />
+                        </td>
+                        <td>日
+                        </td>
+                        <td>（默认今天）
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td> 距离
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-to-year" />
+                        </td>
+                        <td>年
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-to-month" />
+                        </td>
+                        <td>月
+                        </td>
+                        <td><input type="text" id="date-calc-diff-content-to-day" />
+                        </td>
+                        <td>日
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                </table>
+                <a onclick="dateDiffClick()" id="calcDateDiff" class="button button-raised button-pill button-inverse">计算</a><strong id="calcDateDiffResultTitle">相差</strong><input id="calcDateDiffResult" type="text" readonly></input><strong id="calcDateDiffResultDay">天</strong>
+            </div>
         </div>
 
         <div id="date-calc-extrapolation-content" class="sub-content">
@@ -38,14 +72,18 @@
 $(document).ready(function() {
     var myDate = new Date;
     var year = myDate.getFullYear(); //获取当前年
-    var mon = myDate.getMonth() + 1; //获取当前月
+    var mon = myDate.getMonth() + 1; //获取当前月,从0开始所以+1
     var day = myDate.getDate(); //获取当前日
     $("#date-calc-diff-content-from-year").val(year);
     $("#date-calc-diff-content-from-month").val(mon);
     $("#date-calc-diff-content-from-day").val(day);
 
-    //字符串转成Time所需方法
-    function stringToTime(string) {
+    $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("display","none");
+
+    
+});
+//字符串转成Time所需方法
+function stringToTime(string) {
         var f = string.split(' ', 2);
         var d = (f[0] ? f[0] : '').split('-', 3);
         var t = (f[1] ? f[1] : '').split(':', 3);
@@ -73,8 +111,8 @@ $(document).ready(function() {
             date2 = date2.getTime();
         return (date2 - date1) / (1000 * 60 * 60 * 24);
     }
-
-    $("#calcDateDiff").click(function() {
+    //按钮点击事件
+    function dateDiffClick() {
         var fromYear = $("#date-calc-diff-content-from-year").val();
         var fromMonth = $("#date-calc-diff-content-from-month").val();
         var fromDay = $("#date-calc-diff-content-from-day").val();
@@ -86,9 +124,9 @@ $(document).ready(function() {
         var dateDiffDay = dateDiff(fromDate, toDate);
         if (dateDiffDay) {
             $("#calcDateDiffResult").val(dateDiffDay);
+            $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("display","unset");
         }
-    });
-});
+    };
 </script>
 
 </html>
