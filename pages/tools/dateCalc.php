@@ -78,7 +78,7 @@ $(document).ready(function() {
     $("#date-calc-diff-content-from-month").val(mon);
     $("#date-calc-diff-content-from-day").val(day);
 
-    $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("display","none");
+    $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("visibility","hidden");
 
     
 });
@@ -124,7 +124,7 @@ function stringToTime(string) {
         var dateDiffDay = dateDiff(fromDate, toDate);
         if (dateDiffDay) {
             $("#calcDateDiffResult").val(dateDiffDay);
-            $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("display","unset");
+            $("#calcDateDiffResultTitle,#calcDateDiffResultDay,#calcDateDiffResult").css("visibility","visible");
         }
     };
 </script>
