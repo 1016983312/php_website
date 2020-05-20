@@ -13,10 +13,15 @@ li{
     height: 45px;
     background-color: #1d1d1f;
 }
+#menu ul{
+    display: table;
+    text-align: center;
+    margin: 0 auto;
+}
 #menu li{
     float: left;
     width: 92px;
-    line-height:39px;
+    line-height:45px;
     text-align: center;
     position:relative;
     border:none;
