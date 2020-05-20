@@ -8,6 +8,7 @@
 <body>
     <div id="menu">
     <ul>
+        <li><a href="/index.php" class="logo" ></a></li>
         <li> <a href="/index.php" class="nodrop">首页</a></li>
         <li><a href="" class="drop">常用工具</a>
         <div class="dropdown_1column">
