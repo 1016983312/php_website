@@ -5,12 +5,23 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/css/default.css">
     <link rel="stylesheet" type="text/css" href="/css/navigator.css">
+
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?b4c2b867ae98c9be8d4d28d6c8521d17";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+
 </head>
 
 <body>
     <div id="menu">
-        <div class="divlogo m-left-45 m-right-10"><a href="/index.php" class="logo" title="asribs"><img src="/images/Asribs.png"
-                    alt="asribs"></a>
+        <div class="divlogo m-left-45 m-right-10"><a href="/index.php" class="logo" title="asribs"><img
+                    src="/images/Asribs.png" alt="asribs"></a>
         </div>
         <div class="divnav">
             <ul>
