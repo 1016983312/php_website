@@ -12,12 +12,29 @@
     <div class="menu">
         <?php include '../../components/navigator.php';?>
     </div>
-    <div id="" class="content">
-        
+    <div class="content">
+        <div class="sub-content-title">
+            联系我们
+        </div>
+        <div class="">
+        From:<br>
+        <input type="text"><p>
+        To:<br>
+        <input type="text"><p>
+        Subject:<br>
+        <input type="text"><p>
+        Body:<br>
+        <input type="text"><p>
+        <a onclick="sendMailClick()" id="sendMail" class="button button-raised button-pill button-inverse">发送</a>
+        </div>
     </div>
 </body>
 <script type="text/javascript">
 
+//按钮点击事件
+function sendMailClick() {
+    alert("Send success ! ")
+    };
 </script>
 
 </html>
