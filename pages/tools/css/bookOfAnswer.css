@@ -1,0 +1,15 @@
+.sub-content-title.bookOfAnswer_english{
+    font-weight: 300;
+    font-size: 36px;
+    font-family: "Blackadder ITC","Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sub-content-title.bookOfAnswer_chinese{
+    font-weight: 300;
+    font-size: 48px;
+    font-family: "方正尚酷简体","华文楷体";
+    font-weight: bold;
+    text-align: center;
+}

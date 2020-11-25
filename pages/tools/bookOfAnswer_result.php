@@ -29,8 +29,8 @@
      $sql =  "select * from bookOfAnswer_answers where answer_page = '{$answer_page_num}'";
      $res = mysqli_query($link,$sql);
      while($rows = mysqli_fetch_assoc($res)){
-         echo "<div id=\"boa-chinese-sub-content\" class=\"sub-content\">
-            <div class=\"sub-content-title\">";
+         echo "<div id=\"boa-chinese-sub-content\" class=\"sub-content m-top-45\">
+            <div class=\"sub-content-title bookOfAnswer_chinese\">";
          echo $rows["answer_chinese"];
          echo "</div>
          <div class=\"sub-content-body\">
@@ -38,7 +38,7 @@
      </div>";
       
      echo " <div id=\"boa-english-sub-content\" class=\"sub-content\">
-     <div class=\"sub-content-title\">";
+     <div class=\"sub-content-title bookOfAnswer_english\">";
      echo $rows["answer_english"];
          echo "</div>
  </div>";
@@ -53,11 +53,6 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
-    //按钮点击事件
-    function btnGetAnswer() {
-
-    };
-
 });
 </script>
 
