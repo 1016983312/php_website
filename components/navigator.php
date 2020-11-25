@@ -32,6 +32,7 @@
                             <div class="col_1">
                                 <ul class="simple">
                                     <li><a href="/pages/tools/dateCalc.php">日期计算器</a></li>
+                                    <li><a href="/pages/tools/bookOfAnswer.php">答案之书</a></li>
                                     <li><a href="">导航条代码</a></li>
                                     <li><a href="">电子商务</a></li>
                                 </ul>
