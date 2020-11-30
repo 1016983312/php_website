@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>答案之书</title>
+    <title>答案之书 The book of answer</title>
     <link rel="stylesheet" type="text/css" href="css/bookOfAnswer.css">
 </head>
 
