@@ -50,10 +50,38 @@
  mysqli_close($con);
 ?>
     </div>
+    <div class="sub-content-body">
+        <form id="formBookOfAnswer_result" action="bookOfAnswer_result.php" method="post">
+            <input type="hidden" id="boa-button-hidden-number" name="boa-button-hidden-number" value="">
+            <button type="button" onclick="btnGetAnswer()" class="ant-btn ant-btn-black">获取答案</button>
+        </form>
+    </div>
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
+
+
 });
+//按钮点击事件
+function btnGetAnswer() {
+    $("#boa-button-hidden-number").val(randomNum(1, 183));
+    document.getElementById("formBookOfAnswer_result").submit(); 
+};
+
+//生成从minNum到maxNum的随机数
+function randomNum(minNum, maxNum) {
+    switch (arguments.length) {
+        case 1:
+            return parseInt(Math.floor(Math.random() * minNum + 1), 10);
+            break;
+        case 2:
+            return parseInt(Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum, 10);
+            break;
+        default:
+            return 1;
+            break;
+    }
+}
 </script>
 
 </html>
