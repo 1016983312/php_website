@@ -1,3 +1,7 @@
+@font-face{
+    font-family: 'Blackadder ITC';
+    src:url(/assets/fonts/Blackadder\ ITC.ttf);
+}
 .content{
 margin-top: 60px;
 width: 100%;
@@ -58,17 +62,6 @@ padding: 5px;
 .button:visited {
     color: #666;
 }
-.button-raised.button-inverse {
-    border-color: #151515;
-    background: -webkit-gradient(linear, left top, left bottom, from(#2f2f2f), to(#151515));
-    background: linear-gradient(#2f2f2f, #151515);
-}
-.button-inverse:visited, .button-inverse-flat:visited {
-    color: #EEE;
-}
-.button:visited {
-    color: #666;
-}
 .showcase .button, .showcase .button-dropdown, .showcase .button-group {
     margin: 5px;
 }
@@ -115,6 +108,12 @@ table{
 .m-left-45{
     margin-left: 45px;
 }
+.m-right-35{
+    margin-right: 35px;
+}
 .m-right-10{
     margin-right: 10px;
+}
+.m-top-45{
+    margin-top: 45px;
 }
