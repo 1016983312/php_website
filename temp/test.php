@@ -57,5 +57,10 @@ function getSign($params){
 	$stringA = trim($stringA,"&");
 
     return strtoupper(md5($stringA . $secretKey));
-	
+	/* Cimpress正式参数
+url:http://oms.pernod-ricard-china.com/index.php/omsapi/service
+appkey:cimpress
+appsecret:CX92kmxls21
+shop_id:cimpress
+location:EAST*/
 }
