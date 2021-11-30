@@ -1,16 +1,16 @@
 
 @font-face{
     font-family: '华康宋体';
-    src:url(/assets/fonts/hkst.ttf);
+    src:url('/assets/fonts/hkst.ttf');
 }
 @font-face{
-    font-family: 'Edwardian Script ITC';
-    src:url(/assets/fonts/Edwardian\ Script\ ITC.ttf);
+    font-family: 'offside';
+    src:url('/assets/fonts/offside.ttf');
 }
 .sub-content-title.bookOfAnswer_english{
     font-weight: 300;
     font-size: 36px;
-    font-family: "Edwardian Script ITC","Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "Offside","Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-weight: bold;
     text-align: center;
 }
