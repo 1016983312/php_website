@@ -41,6 +41,7 @@
                     <ul class="child-menu">
                         <li><a href="/pages/tools/dateCalc.php">日期计算器</a></li>
                         <li><a href="/pages/tools/bookOfAnswer.php">答案之书</a></li>
+                        <li><a href="/pages/tools/24calculator.php">24点计算器</a></li>
                     </ul>
                 </li>
                 <li class="drop">
