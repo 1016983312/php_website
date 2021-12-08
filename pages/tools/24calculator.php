@@ -56,7 +56,7 @@ function btnGetAnswer() {
     operatorArrary = ['+', '-', '*', '/'];
     var expressions = new Array();
     validateInt(num1, num2, num3, num4);
-    getCalc24ExpressionsA(num1, num2, num3, num4, operatorArrary,expressions);
+    getCalc24ExpressionsA(num1, num2, num3, num4, operatorArrary, expressions);
     $("#resultExpressions").val(expressions);
 }
 
@@ -72,36 +72,114 @@ function validateInt(n1, n2, n3, n4) {
 }
 
 //获得所有得出24点的表达式A方法
-function getCalc24ExpressionsA(n1, n2, n3, n4, operArr,expressions) {
-    //顺序有:1.((n1?n2)?n3)?n4; 2.((n1?(n2?n3))?n4; 3.n1?((n2?n3)?n4); 4.n1?(n2?(n3?n4));
+function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
+    //顺序有:1.((n1?n2)?n3)?n4; 2.((n1?(n2?n3))?n4; 3.n1?((n2?n3)?n4); 4.n1?(n2?(n3?n4)); 5.((n1?n4)?n3)n2; 6.((n1?n3)?n2)?n4; 7.((n2?n4)?n1)?n3; 8.((n1?n2)?n4)?n3; 9.n2?(n1?(n3?n4)); 
+    //10.((n1?n4)?n2)n3; 11.((n1?n3)?n4)?n2; 12.((n2?n4)?n3)?n1;
     var expressionItem = "";
-    var indexValue = operArr.length;
+    var numberArray = [
+        [n1, n2, n3, n4],
+        // [n1, n2, n4, n3],
+        // [n1, n3, n2, n4],
+        // [n1, n3, n4, n2],
+        // [n1, n4, n3, n2],
+        // [n1, n4, n2, n3],
+        // [n2, n1, n3, n4],
+        // [n2, n1, n4, n3],
+        [n2, n3, n1, n4],
+        // [n2, n3, n4, n1],
+        [n2, n4, n1, n3],
+        // [n2, n4, n3, n1],
+        // [n3, n1, n2, n4],
+        // [n3, n1, n4, n2],
+        // [n3, n2, n1, n4],
+        // [n3, n2, n4, n1],
+        // [n3, n4, n2, n1],
+        // [n3, n4, n1, n2],
+        [n4, n1, n2, n3]
+        // [n4, n1, n3, n2],
+        // [n4, n2, n1, n3],
+        // [n4, n2, n3, n1],
+        // [n4, n3, n1, n2],
+        // [n4, n3, n2, n1]
+    ];;
+    //var indexValue = operArr.length;
     var result1 = 0; //前两个计算结果
     var result2 = 0; //前三个计算结果
     //获取4个整数
     //获取计算需要的符号
     //遍历or递归计算可能性
     //将结果存入变量，显示在前端页面控件内
-    for (var i = 0; i < operArr.length; i++) {
-        if (n2 == 0 && operArr[i] === '\/') {
-            continue;
-        }
-        result1 = eval(n1 + operArr[i] + n2)
-        for (var j = 0; j < operArr.length; j++) {
-            if (n3 == 0 && operArr[j] === '\/') {
+    for (let m = 0; m < numberArray.length; m++) {
+        var element = numberArray[m];
+        for (var i = 0; i < operArr.length; i++) {
+            if (element[1] == 0 && operArr[i] === '\/') {
                 continue;
             }
-            result2 = eval(result1 + operArr[j] + n3)
-            for (var k = 0; k < operArr.length; k++) {
-                if (n4 == 0 && operArr[k] === '\/') {
+            result1 = eval(element[0] + operArr[i] + element[1])
+            for (var j = 0; j < operArr.length; j++) {
+                if (element[2] == 0 && operArr[j] === '\/') {
                     continue;
                 }
-                if (eval(result2 + operArr[k] + n4) == 24) {
-                    expressionItem = n1 + getExpressionOperator(i) + n2 + getExpressionOperator(j) + n3 + getExpressionOperator(k) + n4;
-                    expressions.push(expressionItem);
+                result2 = eval(result1 + operArr[j] + element[2])
+                for (var k = 0; k < operArr.length; k++) {
+                    if (element[3] == 0 && operArr[k] === '\/') {
+                        continue;
+                    }
+                    if (eval(result2 + operArr[k] + element[3]) == 24) {
+                        if ((getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') && (
+                                getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-')) {
+                            expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')' +
+                                getExpressionOperator(j) + element[2]
+                        } else {
+                            expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
+                                j) + element[2]
+                        }
+                        if ((getExpressionOperator(k) === '*' || getExpressionOperator(k) === '\/') && (
+                                getExpressionOperator(j) === '+' || getExpressionOperator(j) === '-')) {
+                            expressionItem = '(' + expressionItem + ')' + getExpressionOperator(k) + element[3]
+                        } else {
+                            expressionItem = expressionItem + getExpressionOperator(k) + element[3];
+                        }
+                        expressions.push(expressionItem);
+                    }
                 }
             }
         }
+        //顺序有:1.(n1?n2)?(n3?n4);
+        // for (var i = 0; i < operArr.length; i++) {
+        //     if (element[1] == 0 && operArr[i] === '\/') {
+        //         continue;
+        //     }
+        //     result1 = eval(element[0] + operArr[i] + element[1])
+        //     for (var j = 0; j < operArr.length; j++) {
+        //         if (element[2] == 0 && operArr[j] === '\/') {
+        //             continue;
+        //         }
+        //         result2 = eval(result1 + operArr[j] + element[2])
+        //         for (var k = 0; k < operArr.length; k++) {
+        //             if (element[3] == 0 && operArr[k] === '\/') {
+        //                 continue;
+        //             }
+        //             if (eval(result2 + operArr[k] + element[3]) == 24) {
+        //                 if ((getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') && (
+        //                         getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-')) {
+        //                     expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')' +
+        //                         getExpressionOperator(j) + element[2]
+        //                 } else {
+        //                     expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
+        //                         j) + element[2]
+        //                 }
+        //                 if ((getExpressionOperator(k) === '*' || getExpressionOperator(k) === '\/') && (
+        //                         getExpressionOperator(j) === '+' || getExpressionOperator(j) === '-')) {
+        //                     expressionItem = '(' + expressionItem + ')' + getExpressionOperator(k) + element[3]
+        //                 } else {
+        //                     expressionItem = expressionItem + getExpressionOperator(k) + element[3];
+        //                 }
+        //                 expressions.push(expressionItem);
+        //             }
+        //         }
+        //     }
+        // }
     }
     return expressions;
 }
@@ -120,6 +198,11 @@ function getExpressionOperator(number) {
     if (number == 3) {
         return "/";
     }
+}
+
+//数组去重
+function arrayRemoveDuplicate(arr1, arr2) {
+    return Array.from(new Set(arr1.concat(arr2)));
 }
 </script>
 
