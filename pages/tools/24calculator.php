@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>24点计算器 Lucky 24</title>
+    <title>24点计算器 24 Game</title>
     <link rel="stylesheet" type="text/css" href="css/24calculator.css">
 </head>
 
@@ -57,6 +57,7 @@ function btnGetAnswer() {
     var expressions = new Array();
     validateInt(num1, num2, num3, num4);
     getCalc24ExpressionsA(num1, num2, num3, num4, operatorArrary, expressions);
+    //expressions = arrayRemoveDuplicate(expressions, expressions); //remove duplicate item
     $("#resultExpressions").val(expressions);
 }
 
@@ -78,33 +79,34 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
     var expressionItem = "";
     var numberArray = [
         [n1, n2, n3, n4],
-        // [n1, n2, n4, n3],
-        // [n1, n3, n2, n4],
-        // [n1, n3, n4, n2],
-        // [n1, n4, n3, n2],
-        // [n1, n4, n2, n3],
-        // [n2, n1, n3, n4],
-        // [n2, n1, n4, n3],
+        [n1, n2, n4, n3],
+        [n1, n3, n2, n4],
+        [n1, n3, n4, n2],
+        [n1, n4, n3, n2],
+        [n1, n4, n2, n3],
+        [n2, n1, n3, n4],
+        [n2, n1, n4, n3],
         [n2, n3, n1, n4],
-        // [n2, n3, n4, n1],
+        [n2, n3, n4, n1],
         [n2, n4, n1, n3],
-        // [n2, n4, n3, n1],
-        // [n3, n1, n2, n4],
-        // [n3, n1, n4, n2],
-        // [n3, n2, n1, n4],
-        // [n3, n2, n4, n1],
-        // [n3, n4, n2, n1],
-        // [n3, n4, n1, n2],
-        [n4, n1, n2, n3]
-        // [n4, n1, n3, n2],
-        // [n4, n2, n1, n3],
-        // [n4, n2, n3, n1],
-        // [n4, n3, n1, n2],
-        // [n4, n3, n2, n1]
+        [n2, n4, n3, n1],
+        [n3, n1, n2, n4],
+        [n3, n1, n4, n2],
+        [n3, n2, n1, n4],
+        [n3, n2, n4, n1],
+        [n3, n4, n2, n1],
+        [n3, n4, n1, n2],
+        [n4, n1, n2, n3],
+        [n4, n1, n3, n2],
+        [n4, n2, n1, n3],
+        [n4, n2, n3, n1],
+        [n4, n3, n1, n2],
+        [n4, n3, n2, n1]
     ];;
     //var indexValue = operArr.length;
     var result1 = 0; //前两个计算结果
     var result2 = 0; //前三个计算结果
+    var haveAnswerFlag = false;
     //获取4个整数
     //获取计算需要的符号
     //遍历or递归计算可能性
@@ -115,17 +117,26 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
             if (element[1] == 0 && operArr[i] === '\/') {
                 continue;
             }
-            result1 = eval(element[0] + operArr[i] + element[1])
+            if (haveAnswerFlag) {
+                break;
+            }
+            result1 = neval(element[0] + operArr[i] + '(' + element[1] + ')')
             for (var j = 0; j < operArr.length; j++) {
                 if (element[2] == 0 && operArr[j] === '\/') {
                     continue;
                 }
-                result2 = eval(result1 + operArr[j] + element[2])
+                if (haveAnswerFlag) {
+                    break;
+                }
+                result2 = neval(result1 + operArr[j] + '(' + element[2] + ')')
                 for (var k = 0; k < operArr.length; k++) {
                     if (element[3] == 0 && operArr[k] === '\/') {
                         continue;
                     }
-                    if (eval(result2 + operArr[k] + element[3]) == 24) {
+                    if (haveAnswerFlag) {
+                        break;
+                    }
+                    if (neval(result2 + operArr[k] + '(' + element[3] + ')') == 24) {
                         if ((getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') && (
                                 getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-')) {
                             expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')' +
@@ -141,48 +152,66 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
                             expressionItem = expressionItem + getExpressionOperator(k) + element[3];
                         }
                         expressions.push(expressionItem);
+                        haveAnswerFlag = true;
                     }
                 }
             }
         }
         //顺序有:1.(n1?n2)?(n3?n4);
-        // for (var i = 0; i < operArr.length; i++) {
-        //     if (element[1] == 0 && operArr[i] === '\/') {
-        //         continue;
-        //     }
-        //     result1 = eval(element[0] + operArr[i] + element[1])
-        //     for (var j = 0; j < operArr.length; j++) {
-        //         if (element[2] == 0 && operArr[j] === '\/') {
-        //             continue;
-        //         }
-        //         result2 = eval(result1 + operArr[j] + element[2])
-        //         for (var k = 0; k < operArr.length; k++) {
-        //             if (element[3] == 0 && operArr[k] === '\/') {
-        //                 continue;
-        //             }
-        //             if (eval(result2 + operArr[k] + element[3]) == 24) {
-        //                 if ((getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') && (
-        //                         getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-')) {
-        //                     expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')' +
-        //                         getExpressionOperator(j) + element[2]
-        //                 } else {
-        //                     expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
-        //                         j) + element[2]
-        //                 }
-        //                 if ((getExpressionOperator(k) === '*' || getExpressionOperator(k) === '\/') && (
-        //                         getExpressionOperator(j) === '+' || getExpressionOperator(j) === '-')) {
-        //                     expressionItem = '(' + expressionItem + ')' + getExpressionOperator(k) + element[3]
-        //                 } else {
-        //                     expressionItem = expressionItem + getExpressionOperator(k) + element[3];
-        //                 }
-        //                 expressions.push(expressionItem);
-        //             }
-        //         }
-        //     }
-        // }
+        for (var i = 0; i < operArr.length; i++) {
+            if (element[1] == 0 && operArr[i] === '\/') {
+                continue;
+            }
+            if (haveAnswerFlag) {
+                break;
+            }
+            result1 = neval(element[0] + operArr[i] + '(' + element[1] + ')') //result1 = (n1?n2)
+            for (var k = 0; k < operArr.length; k++) {
+                if (element[3] == 0 && operArr[k] === '\/') {
+                    continue;
+                }
+                if (haveAnswerFlag) {
+                    break;
+                }
+                result2 = neval(element[2] + operArr[k] + '(' + element[3] + ')') //result1 = (n3?n4)
+                for (var j = 0; j < operArr.length; j++) {
+                    if (result2 == 0 && operArr[j] === '\/') {
+                        continue;
+                    }
+                    if (haveAnswerFlag) {
+                        break;
+                    }
+                    if (neval(result1 + operArr[j] + '(' + result2 + ')') == 24) {
+                        if (getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') {
+                            if (getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-') {
+                                expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')';
+                            }else{
+                                expressionItem =element[0] + getExpressionOperator(i) + element[1];
+                            }
+                            if (getExpressionOperator(k) === '+' || getExpressionOperator(k) === '-') {
+                                expressionItem = expressionItem + getExpressionOperator(j) + '(' + element[2] + getExpressionOperator(k) + element[3] +')';
+                            }
+                            else{
+                                expressionItem = expressionItem + getExpressionOperator(j) + element[2] + getExpressionOperator(k) + element[3];
+                            }
+                        } else {
+                            expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
+                                j) + element[2] + getExpressionOperator(k) + element[3]
+                        }
+                        expressions.push(expressionItem);
+                        haveAnswerFlag = true;
+                    }
+                }
+            }
+        }
+    }
+    if (expressions == '') {
+        expressions.push("我尽力了，实在没有解。。。");
     }
     return expressions;
 }
+
+
 
 //获得表达式
 function getExpressionOperator(number) {
@@ -204,6 +233,13 @@ function getExpressionOperator(number) {
 function arrayRemoveDuplicate(arr1, arr2) {
     return Array.from(new Set(arr1.concat(arr2)));
 }
+
+function neval(str) {
+    var fn = Function;
+    return new fn('return ' + str)();
+}
 </script>
+
+
 
 </html>
