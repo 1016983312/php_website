@@ -52,7 +52,8 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function() {
-
+$("#t1").focus();
+$("#t1").select();
 });
 //按钮点击事件
 function btnGetAnswer() {
