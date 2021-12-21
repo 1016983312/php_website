@@ -12,9 +12,9 @@
     <div class="menu">
         <?php include '../../components/navigator.php';?>
     </div>
-    <div id="boa-chinese-content" class="content">
-        <div id="boa-button-sub-content" class="sub-content m-top-45">
-            <div class="sub-content-title bookOfAnswer_chinese">
+    <div class="content">
+        <div class="sub-content m-top-45">
+            <div class="sub-content-title calc24 m-bottom-45">
                 <div class="font-subtitle">24点计算器</div>
                 <div class="sub-content-body">
                     <form id="24calculator" action="#" method="post">
@@ -24,19 +24,26 @@
                             <input type="text" maxlength="6" id="t2" size="5" value="2">
                             <input type="text" maxlength="6" id="t3" size="5" value="3">
                             <input type="text" maxlength="6" id="t4" size="5" value="4">
+                            </div>
+                            <div class="font-body m-top-45">
+                            <button type="button" onclick="btnGetAnswer()"
+                                class="ant-btn ant-btn-black m-right-10">计算</button>
                         </div>
-                        <div class="font-body"><button type="button" onclick="btnGetAnswer()"
-                                class="ant-btn ant-btn-black">计算</button></div>
                     </form>
                 </div>
                 <div class="font-body m-top-45">
-                    运算结果：
+                    运算结果
                 </div>
                 <div class="font-body"><input type="text" id="resultExpressions"></div>
-                <div class="font-body">
-                    24点游戏是一种益智游戏，24点是把4个整数（一般是正整数）通过加减乘除以及括号运算，使最后的计算结果是24的一个数学游戏，24点可以考验人的智力和数学敏感性，它能在游戏中提高人们的心算能力。24点计算器中能列举出所有的可能计算结果.
-
-                    24点计算通常是使用扑克牌来进行游戏的，一副牌中抽去大小王后还剩下52张（如果初练也可只用1～10这40张牌），任意抽取4张牌（称为牌组），用加、减、乘、除（可加括号）把牌面上的数算成24。24点游戏中每张牌必须只能用一次，如抽出的牌是3、8、8、9，那么算式为（9－8）×8×3或3×8÷（9－8）或（9－8÷8）×3等。
+                <div class="sub-content-body calc24Description">
+                    24点游戏是一种益智游戏</div>
+                <div class="sub-content-body calc24Description">
+                    把4个整数通过加减乘除以及括号运算，使最后的计算结果是24的一个数学游戏
+                </div>
+                <div class="sub-content-body calc24Description">可以考验人的智力和数学敏感性，它能在游戏中提高人们的心算能力
+                </div>
+                <div class="sub-content-body calc24Description">
+                    如数字是1、2、3、4，那么算式为(1+2+3)*4
                 </div>
             </div>
         </div>
@@ -102,7 +109,7 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
         [n4, n2, n3, n1],
         [n4, n3, n1, n2],
         [n4, n3, n2, n1]
-    ];;
+    ];
     //var indexValue = operArr.length;
     var result1 = 0; //前两个计算结果
     var result2 = 0; //前三个计算结果
@@ -140,14 +147,14 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
                         if ((getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') && (
                                 getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-')) {
                             expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')' +
-                                getExpressionOperator(j) + element[2]
+                                getExpressionOperator(j) + element[2];
                         } else {
                             expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
-                                j) + element[2]
+                                j) + element[2];
                         }
                         if ((getExpressionOperator(k) === '*' || getExpressionOperator(k) === '\/') && (
                                 getExpressionOperator(j) === '+' || getExpressionOperator(j) === '-')) {
-                            expressionItem = '(' + expressionItem + ')' + getExpressionOperator(k) + element[3]
+                            expressionItem = '(' + expressionItem + ')' + getExpressionOperator(k) + element[3];
                         } else {
                             expressionItem = expressionItem + getExpressionOperator(k) + element[3];
                         }
@@ -165,7 +172,7 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
             if (haveAnswerFlag) {
                 break;
             }
-            result1 = neval(element[0] + operArr[i] + '(' + element[1] + ')') //result1 = (n1?n2)
+            result1 = neval(element[0] + operArr[i] + '(' + element[1] + ')'); //result1 = (n1?n2)
             for (var k = 0; k < operArr.length; k++) {
                 if (element[3] == 0 && operArr[k] === '\/') {
                     continue;
@@ -173,7 +180,7 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
                 if (haveAnswerFlag) {
                     break;
                 }
-                result2 = neval(element[2] + operArr[k] + '(' + element[3] + ')') //result1 = (n3?n4)
+                result2 = neval(element[2] + operArr[k] + '(' + element[3] + ')'); //result1 = (n3?n4)
                 for (var j = 0; j < operArr.length; j++) {
                     if (result2 == 0 && operArr[j] === '\/') {
                         continue;
@@ -185,18 +192,19 @@ function getCalc24ExpressionsA(n1, n2, n3, n4, operArr, expressions) {
                         if (getExpressionOperator(j) === '*' || getExpressionOperator(j) === '\/') {
                             if (getExpressionOperator(i) === '+' || getExpressionOperator(i) === '-') {
                                 expressionItem = '(' + element[0] + getExpressionOperator(i) + element[1] + ')';
-                            }else{
-                                expressionItem =element[0] + getExpressionOperator(i) + element[1];
+                            } else {
+                                expressionItem = element[0] + getExpressionOperator(i) + element[1];
                             }
                             if (getExpressionOperator(k) === '+' || getExpressionOperator(k) === '-') {
-                                expressionItem = expressionItem + getExpressionOperator(j) + '(' + element[2] + getExpressionOperator(k) + element[3] +')';
-                            }
-                            else{
-                                expressionItem = expressionItem + getExpressionOperator(j) + element[2] + getExpressionOperator(k) + element[3];
+                                expressionItem = expressionItem + getExpressionOperator(j) + '(' + element[2] +
+                                    getExpressionOperator(k) + element[3] + ')';
+                            } else {
+                                expressionItem = expressionItem + getExpressionOperator(j) + element[2] +
+                                    getExpressionOperator(k) + element[3];
                             }
                         } else {
                             expressionItem = element[0] + getExpressionOperator(i) + element[1] + getExpressionOperator(
-                                j) + element[2] + getExpressionOperator(k) + element[3]
+                                j) + element[2] + getExpressionOperator(k) + element[3];
                         }
                         expressions.push(expressionItem);
                         haveAnswerFlag = true;
