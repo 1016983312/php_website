@@ -34,7 +34,7 @@
                 <div class="font-body m-top-45">
                     运算结果
                 </div>
-                <div class="font-body"><input type="text" id="resultExpressions"></div>
+                <div class="font-body"><input type="text" id="resultExpressions" οnfοcus=”this.select() onclick="this.select()"></div>
                 <div class="sub-content-body calc24Description">
                     24点游戏是一种益智游戏</div>
                 <div class="sub-content-body calc24Description">
