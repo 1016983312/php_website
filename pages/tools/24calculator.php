@@ -20,10 +20,10 @@
                     <form id="24calculator" action="#" method="post">
                         <div class="font-title"> 请输入数字</div>
                         <div class="font-body m-top-45">
-                            <input type="text" maxlength="6" id="t1" size="5" value="1">
-                            <input type="text" maxlength="6" id="t2" size="5" value="2">
-                            <input type="text" maxlength="6" id="t3" size="5" value="3">
-                            <input type="text" maxlength="6" id="t4" size="5" value="4">
+                            <input type="text" maxlength="6" id="t1" size="5" value="1" οnfοcus=”this.select() onclick="this.select()">
+                            <input type="text" maxlength="6" id="t2" size="5" value="2" οnfοcus=”this.select() onclick="this.select()">
+                            <input type="text" maxlength="6" id="t3" size="5" value="3" οnfοcus=”this.select() onclick="this.select()">
+                            <input type="text" maxlength="6" id="t4" size="5" value="4" οnfοcus=”this.select() onclick="this.select()">
                             </div>
                             <div class="font-body m-top-45">
                             <button type="button" onclick="btnGetAnswer()"
