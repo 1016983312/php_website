@@ -13,7 +13,7 @@
         <?php include '../../components/navigator.php';?>
     </div>
     <div class="content">
-        <div class="sub-content m-top-45">
+        <div class="sub-content">
         </div>
         <div class="sub-content-body">
 

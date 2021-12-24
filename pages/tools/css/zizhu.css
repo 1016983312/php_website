@@ -1,0 +1,16 @@
+@font-face {
+    font-family: '华康宋体';
+    src: url('../../../assets/fonts/hkst.ttf');
+    src:
+      url('../../../assets/fonts/hkst.eot') format('embedded-opentype'),
+      url('../../../assets/fonts/hkst.woff') format('woff'),
+      url('../../../assets/fonts/hkst.ttf') format('truetype'),
+      url('../../../assets/fonts/hkst.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+   
+  /*使用选择器指定字体*/
+p {
+      font-family: '华康宋体';
+  }

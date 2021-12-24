@@ -29,7 +29,7 @@
      $sql =  "select * from bookOfAnswer_answers where answer_page = '{$answer_page_num}'";
      $res = mysqli_query($link,$sql);
      while($rows = mysqli_fetch_assoc($res)){
-         echo "<div id=\"boa-chinese-sub-content\" class=\"sub-content m-top-45\">
+         echo "<div id=\"boa-chinese-sub-content\" class=\"sub-content\">
             <div class=\"sub-content-title bookOfAnswer_chinese\">";
          echo $rows["answer_chinese"];
          echo "</div>

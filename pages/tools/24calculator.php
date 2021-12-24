@@ -13,7 +13,7 @@
         <?php include '../../components/navigator.php';?>
     </div>
     <div class="content">
-        <div class="sub-content m-top-45">
+        <div class="sub-content">
             <div class="sub-content-title calc24 m-bottom-45">
                 <div class="font-subtitle">24点计算器</div>
                 <div class="sub-content-body">

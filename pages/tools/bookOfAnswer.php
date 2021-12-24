@@ -13,7 +13,7 @@
         <?php include '../../components/navigator.php';?>
     </div>
     <div id="boa-chinese-content" class="content">
-        <div id="boa-button-sub-content" class="sub-content m-top-45">
+        <div id="boa-button-sub-content" class="sub-content">
             <div class="sub-content-title bookOfAnswer_chinese">
                 <div class="font-subtitle">神秘的</div>
                 <div class="font-title"> 答案之书
