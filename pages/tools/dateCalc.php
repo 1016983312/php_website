@@ -74,7 +74,7 @@
             <div class="sub-content-body">
                 <table>
                     <tr>
-                        <td style="text-align:right">起始日期：
+                        <td style="text-align:right">起始：
                         </td>
                         <td><input type="number" id="date-calc-extrapolation-content-from-year" />
                         </td>
@@ -149,6 +149,21 @@ function stringToTime(string) {
         parseInt(t[2], 10) || null
     )).getTime();
 }
+
+//字符串转成Date所需方法
+function stringToDate(string) {
+    var f = string.split(' ', 2);
+    var d = (f[0] ? f[0] : '').split('-', 3);
+    var t = (f[1] ? f[1] : '').split(':', 3);
+    return (new Date(
+        parseInt(d[0], 10) || null,
+        (parseInt(d[1], 10) || 1) - 1,
+        parseInt(d[2], 10) || null,
+        parseInt(t[0], 10) || null,
+        parseInt(t[1], 10) || null,
+        parseInt(t[2], 10) || null
+    ));
+}
 //计算两个时间的差值
 //返回值：天
 function dateDiff(date1, date2) {
@@ -168,14 +183,11 @@ function dateDiff(date1, date2) {
 //计算某天前后多少天
 //返回值：date
 function dateExtrapo(date, days) {
-    var nd = new Date(date);
-    nd = nd.valueOf();
-    nd = nd + days * 24 * 60 * 60 * 1000;
-    nd = new Date(nd);
-    //alert(nd.getFullYear() + "年" + (nd.getMonth() + 1) + "月" + nd.getDate() + "日");
-    var y = nd.getFullYear();
-    var m = nd.getMonth() + 1;
-    var d = nd.getDate();
+    var nd = stringToDate(date);
+    var rd=new Date((nd/1000+(86400*days))*1000);
+    var y = rd.getFullYear();
+    var m = rd.getMonth() + 1;
+    var d = rd.getDate();
     if (m <= 9) m = "0" + m;
     if (d <= 9) d = "0" + d;
     var cdate = y + "-" + m + "-" + d;
