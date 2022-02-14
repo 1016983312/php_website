@@ -99,7 +99,7 @@
                         </td>
                         <td>天
                         </td>
-                        <td colspan=5>（历史日期用负值，未来日期用正值。）
+                        <td colspan=5>（如需历史日期请用负值）
                         </td>
                     </tr>
                 </table>
