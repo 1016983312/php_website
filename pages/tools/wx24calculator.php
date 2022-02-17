@@ -385,7 +385,7 @@ wx.config({
     timestamp: '<?php echo $timestamp ?>', // 必填，生成签名的时间戳
     nonceStr: '<?php echo $nonceStr ?>', // 必填，生成签名的随机串
     signature: '<?php echo $sha_str ?>', // 必填，签名
-    jsApiList: ['scanQRCode', 'startRecord', 'stopRecord', 'translateVoice','updateAppMessageShareData','updateTimelineShareData'] // 必填，需要使用的JS接口列表
+    jsApiList: ['scanQRCode', 'startRecord', 'stopRecord','uploadVoice','onVoiceRecordEnd', 'translateVoice','updateAppMessageShareData','updateTimelineShareData'] // 必填，需要使用的JS接口列表
 });
 
 wx.ready(function() {
