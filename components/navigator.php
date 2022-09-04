@@ -56,7 +56,7 @@
         </div>
     </div>
 </body>
-<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js"></script>
+<!--<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.0.min.js"></script>-->
 <script>window.jQuery || document.write('<script src="/js/jquery-3.5.1.min.js" type="text/javascript"><\/script>')</script>
 <script>
 (function() {

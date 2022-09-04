@@ -146,8 +146,10 @@ function https_request($url, $data = null){
                                 onclick="this.select()" />
                         </div>
                         <div class="font-body m-top-45">
-                            <button id="btnTranslateVoiceStart" onclick="translateVoiceStart()" type="button" class="ant-btn ant-btn-black m-right-10">开始语音识别</button>
-                            <button id="btnTranslateVoiceEnd" onclick="translateVoiceEndAndTranslate()" type="button" class="ant-btn ant-btn-black m-right-10">结束语音识别</button>
+                            <button id="btnTranslateVoiceStart" onclick="translateVoiceStart()" type="button"
+                                class="ant-btn ant-btn-black m-right-10">开始语音识别</button>
+                            <button id="btnTranslateVoiceEnd" onclick="translateVoiceEndAndTranslate()" type="button"
+                                class="ant-btn ant-btn-black m-right-10">结束语音识别</button>
                         </div>
                         <div class="font-body m-top-45">
                             <button type="button" onclick="btnGetAnswer()"
@@ -385,7 +387,8 @@ wx.config({
     timestamp: '<?php echo $timestamp ?>', // 必填，生成签名的时间戳
     nonceStr: '<?php echo $nonceStr ?>', // 必填，生成签名的随机串
     signature: '<?php echo $sha_str ?>', // 必填，签名
-    jsApiList: ['scanQRCode', 'startRecord', 'stopRecord','uploadVoice','onVoiceRecordEnd', 'translateVoice','updateAppMessageShareData','updateTimelineShareData'] // 必填，需要使用的JS接口列表
+    jsApiList: ['scanQRCode', 'startRecord', 'stopRecord', 'uploadVoice', 'onVoiceRecordEnd', 'translateVoice',
+        'updateAppMessageShareData','updateTimelineShareData'] // 必填，需要使用的JS接口列表
 });
 
 wx.ready(function() {
@@ -396,6 +399,7 @@ wx.ready(function() {
         imgUrl: 'https://asribs.com/images/Asribs.png',
         success: function() {
             // 设置成功
+            alert("updateAppMessageShareData success");
         }
     })
     wx.updateTimelineShareData({
@@ -404,6 +408,7 @@ wx.ready(function() {
         imgUrl: 'https://asribs.com/images/Asribs.png', // 分享图标
         success: function() {
             // 设置成功
+            alert("updateTimelineShareData success");
         }
     })
 });
@@ -434,7 +439,15 @@ function test() {
 
 //开始微信语音上传
 function translateVoiceStart() {
-    wx.startRecord();
+    wx.startRecord({
+        this.$wx.onVoiceRecordEnd({
+            // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+            complete: function(res) {
+                //this.resetVoiceOption();
+                this.uploadVoice(res.localId);
+            }
+        });
+    });
 }
 
 //结束微信语音上传并智能识别
